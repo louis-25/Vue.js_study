@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" @keydown.ctrl.enter="keydownHandler"> <!--ctrl+enter키 누르면 핸들러 작동-->
+
+    </div>
+    <script>
+        const vm = new Vue({
+            el:'#app',
+            data:{
+                
+            },
+            methods:{
+                keydownHandler(e) {
+                    if (e.keyCode === 13){ //13번- Enter키
+                        console.log('Done!')
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

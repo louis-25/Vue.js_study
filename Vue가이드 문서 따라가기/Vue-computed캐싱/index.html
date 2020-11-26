@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div>{{ reverseMsg() }}</div>
+        <div>{{ reverseMsg() }}</div>
+        <div>{{ reverseMsg() }}</div>
+        <div>------------------</div>
+        <div>{{ reversedMsg }}</div>
+        <div>{{ reversedMsg }}</div>
+        <div>{{ reversedMsg }}</div>
+    </div>
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                msg: 'Hello Vue!'
+            },
+            computed:{//함수가 아니라 데이터처럼 사용한다
+                reversedMsg() { //처음 한번만 계산한 후 캐싱을 사용한다
+                    return this.msg.split('').reverse().join('')
+                }
+            },
+            methods: { //함수라서 매번 계산을해서 반환해준다
+                reverseMsg () {
+                    return this.msg.split('').reverse().join('')
+                }
+            }
+        })
+    </script>
+</body>
+</html>

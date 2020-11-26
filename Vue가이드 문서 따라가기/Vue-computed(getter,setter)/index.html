@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div>{{ reversedMsg }}</div>
+    </div>
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            data:{
+                msg: 'Hello Vue!'
+            },
+            computed: {
+                reversedMsg: { //객체데이터를 받는다
+                    // reversedMsg(){ //기존의 코드를 getter와 setter로 나눌 수 있다
+                    //     return this.msg.split('').reverse().join('')
+                    // } ,
+
+                    //Getter
+                    get () { //get: function () 
+                        return this.msg.split('').reverse().join('')    
+                    },
+                    //Setter
+                    set (value) { //set: function (value)
+                        this.msg = value
+                    }
+
+                }
+            }
+        })
+    </script>
+</body>
+</html>

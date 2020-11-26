@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <my-comp :msg="message" @my-event="updateMessage"></my-comp>
+    </div>
+
+    <script>
+        Vue.component('my-comp',{
+            template: '<div @click="updateMsg">{{ myMsg }}</div>',
+            props:{                
+                myMsg: String                
+            },
+            methods: {
+                updateMsg() {
+                    // this.MyMsg = 'Good' //직접적으로 바꾸면 안된다
+                    this.$emit('my-event', 'Good') //부모에게 이벤트를 전달하여 데이터를 변경한다
+                }
+            }
+        })
+
+        const vm = new Vue({
+            el:'#app',
+            data(){
+                return{
+                    message: 'Hello'
+                }
+            },
+            methods: {
+                updateMessage(value){
+                    this.message = value
+                }
+            }
+        })
+    </script>
+</body>
+</html>

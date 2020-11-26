@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- <input type="text" v-model="message"> -->
+        <!-- <input type="text" @input="message = $event.target.value"> $event는 해당함수에서 발생한 이벤트 -->
+        <input type="text" @input="bindMessage" :value="message">
+        <div>{{ message }}</div>
+    </div>
+    <script>
+        const vm = new Vue({
+            el:'#app',
+            data:{
+                message: 'Hello~'
+            },
+            methods: {
+                bindMessage(evenet) {
+                    this.message = event.target.value
+                }
+            }
+        })
+        let data2 = new Object({
+            msg: 'hello'
+        })
+        let a = data2;
+        let b = a;
+        data2.msg = 'world'
+        console.log(a.msg);
+        console.log(b.msg);
+    </script>
+</body>
+</html>

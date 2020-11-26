@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div> {{ msg }}</div>
+        <div> {{ reversedMsg }} </div>
+    </div>
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                msg: 'Hello Vue!'
+            },
+            computed: {
+                // reversedMsg() {
+                //     return this.msg.split('').reverse().join('')
+                // }
+                reversedMsg: {
+                    get() {
+                        return this.msg.split('').reverse().join('')
+                    },
+                    set(v) {
+                        this.msg = v
+                    }
+                }
+            },
+            watch: {
+                msg:function(newMsg) { //메세지가 변경될때마다 값을 띄워줌
+                    console.log('New data: '+newMsg)
+                },
+                reversedMsg (newMsg) {
+                    console.log('New reversedMsg: '+newMsg)                    
+                }
+                
+            }
+        })
+    </script>
+    
+</body>
+</html>

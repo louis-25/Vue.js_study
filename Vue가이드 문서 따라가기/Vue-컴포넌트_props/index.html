@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <my-comp :msg="message"></my-comp>
+    </div>
+    <script>
+        Vue.component('my-comp',{
+            template: '<div>{{ msg }}</div>',
+            props:{
+                // msg: String //msg는 문자데이터만 받아서 써야한다
+                msg: {
+                    type: [String, Number], //문자, 숫자 데이터만 사용가능
+                    default: 'Default!',
+                    required: true,
+                    validator: function(value) {
+                        return value === 'Hello!'
+                    }
+                }
+            }
+        })
+
+        const vm = new Vue({
+            el:'#app',
+            data(){
+                return{
+                    message: 'Hello'
+                }
+            }
+        })
+    </script>
+</body>
+</html>

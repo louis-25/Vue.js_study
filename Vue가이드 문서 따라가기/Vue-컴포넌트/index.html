@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app1">
+        <my-component />
+    </div>
+    <div id="app2">
+        <my-comp />
+    </div>
+    <script>
+        //전역 컴포넌트
+        // Vue.component('my-component',{ 
+        //     template: '<div class="me">{{ message }}</div>',
+        //     data: function(){
+        //         return {
+        //             message: 'Hello Vue!'
+        //         }
+        //     }
+        // })
+
+        //지역 컴포넌트
+        const myComp= {
+            template: '<div class="me">{{ message }}</div>',
+            data: function(){
+                return {
+                    message: 'Hello Vue!'
+                }
+            }
+        }
+
+        const vm1 = new Vue({
+            el:'#app1',
+            components: {
+                'my-component':myComp
+            }
+        })
+
+        const vm2 = new Vue({
+            el:'#app2',
+            components: {
+                // 'my-comp':myComp
+                myComp //위의코드와 기능이 동일하다 (케밥케이스 -> 카멜케이스)
+            }
+        })
+    </script>
+</body>
+</html>

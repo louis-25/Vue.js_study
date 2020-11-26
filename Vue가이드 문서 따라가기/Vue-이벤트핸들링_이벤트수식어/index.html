@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    
+    <style>
+        .parent{
+            width: 200px;
+            height: 200px;
+            background: blue;
+        }
+        .child{
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+
+    <div id="app">
+        <div class="parent" @click.capture="clickHandler"><!--.capture parent가 먼저 실행됨-->
+            <div class="child" @click.stop="clickHandler"></div> <!--.stop은 이벤트 중복을 막아줌-->
+        </div>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            methods: {
+                clickHandler(event) {
+                    console.log(event.currentTarget.className)
+                }
+            }
+        })
+    </script>
+</body>
+</html>
